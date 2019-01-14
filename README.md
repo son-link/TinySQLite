@@ -3,11 +3,14 @@
 A tiny PHP class for use SQLite3 databases
 
 (c) 2019 Alfonso Saavedra "Son Link"
+
 http://son-link.github.io
+
+Under the GNU/GPL 3 or newer license
 
 ### Install:
 
-Download tinysqlite.php and include on your proyect:
+Download tinysqlite.php and include on your project:
 
 `require_once 'tinysqlite.php'`
 
@@ -24,7 +27,7 @@ $db = new TinySQLite('file')
 * $num_rows (int): Contain the num rows affected by SELECT.
 * $errorInfo (array): Contain ifo if have any error.
 * $lastInsertId (int): Contain the last insertion ID after last INSERT.
-* $result (array): Contain the result of the las query.
+* $result (array): Contain the result of the last query.
 
 ### Functions:
 
@@ -36,10 +39,10 @@ $db->query($sql, $values=array()):
 ```
 **Params:**
 
-* $sql (required): is the SQL sentence.
-* $values (optional): Array with values to pass to the setence.
+* $sql (string, required): is the SQL sentence.
+* $values (array): Array with values to pass to the sentence.
 
-**Returns:** Boolean indicate if the sentencie is executed correctly
+**Returns:** Boolean indicate if the query is executed correctly
 
 ##### Example:
 
@@ -49,7 +52,7 @@ $db->query('SELECT * FROM table WHERE id=?', 1);
 
 // Obtein the result for a SELECT
 $db->result;
-// Or the last insert ID if the table contain a AUTO INCREMENT column:
+// Or the last insert ID if the table contains a AUTO INCREMENT column:
 $db->$lastInsertId
 ```
 
@@ -61,10 +64,10 @@ $db->select($params=array()):
 ```
 **Params:**
 
-* $params (required): A assocative array with the parameters to use:
+* $params (array, required): A associative array with the parameters to use:
 	- table (string, required): the name of the table to get the result
 	- fields (array): A array with the fields to get (by default is all (\*))
-	- conditions (array or string): array or string wirh conditions. The array always use the AND operator, if you can use other operators or JOINS, etc, pass as string.
+	- conditions (array or string): array or string with conditions. The array always use the AND operator, if you can use other operators or JOINS, etc, pass as string.
 	- orderby (string): order the result using ORDER BY.
 	- limit (int): the limit of results to return
 
@@ -77,7 +80,7 @@ $db->select($params=array()):
 // Get all users
 $result = $db->select(array('table' => 'users'));
 
-// Get only the user with a specyfic username
+// Get only the user with a specific username
 $result = $db->select(
 	array('
 		'table' => 'users',
@@ -106,7 +109,7 @@ $db->insert($table, $values):
 * $table (string, required): The table to insert the new row.
 * $values (array): Associative array with the values.
 
-**Returns:** A int value with the last insert id (if the table contains a PRIMARY KEy with AUTO_INCREMENT) or false if the query fails.
+**Returns:** A int value with the last insert id (if the table contains a PRIMARY KEY with AUTO_INCREMENT) or false if the query fails.
 
 ##### Example:
 
@@ -128,7 +131,7 @@ $db->update($table, $values, $conditions=''):
 **Params:**
 
 * $table (string, required): is affected table.
-* $values (array, required): Assocative array with values to update.
+* $values (array, required): Associative array with values to update.
 * $conditions (array): Associative array with the conditions to update
 
 **Returns:** Boolean indicate if the update is executed correctly
@@ -153,7 +156,7 @@ $db->delete($table, $conditions, $limit=''):
 **Params:**
 
 * $table (string, required): is the affected table.
-* $conditions (array, required): Assocative array with the conditions to delete a row.
+* $conditions (array, required): Associative array with the conditions to delete a row.
 * $limit (int): A limit if affected a more than one row.
 
 **Returns:** Boolean indicate if the delete is executed correctly
